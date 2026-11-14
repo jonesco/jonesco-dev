@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # An app repo's notify-hub workflow sends this when its style folder changes
+  repository_dispatch:
+    types: [app-updated]
 
 permissions:
   contents: read

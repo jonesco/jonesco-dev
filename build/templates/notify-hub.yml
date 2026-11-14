@@ -1,0 +1,31 @@
+# Tells dev.jonesco.com to rebuild when this app's style guide changes.
+# Needs the secret HUB_DISPATCH_TOKEN: a fine-grained token with
+# Contents read and write on jonesco/jonesco-dev only. Without it this does nothing.
+name: Notify dev hub
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'style/**'
+      - 'dev.json'
+      - 'PROJECT.md'
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    env:
+      HUB_DISPATCH_TOKEN: ${{ secrets.HUB_DISPATCH_TOKEN }}
+    steps:
+      - name: Rebuild the hub
+        if: ${{ env.HUB_DISPATCH_TOKEN != '' }}
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer $HUB_DISPATCH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/jonesco/jonesco-dev/dispatches \
+            -d '{"event_type":"app-updated"}'
+      - name: Skipped
+        if: ${{ env.HUB_DISPATCH_TOKEN == '' }}
+        run: echo "HUB_DISPATCH_TOKEN is not set, so the hub was not notified."

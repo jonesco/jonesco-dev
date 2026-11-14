@@ -18,6 +18,7 @@ the list of apps. It does not hold app code.
 ├── <App>.xcodeproj         at the root, never nested
 ├── <App>/                  source
 ├── Tests/
+├── .github/workflows/notify-hub.yml   rebuilds the hub when style/ changes
 ├── AppStore/
 │   ├── Metadata.md         name, subtitle, keywords, description, review notes
 │   ├── Screens/            final upload images
@@ -131,8 +132,9 @@ jonesco-dev/
 
 1. Create the repo in the standard layout, from the template.
 2. Fill in `PROJECT.md`, `dev.json` and `style/tokens.json`.
-3. Add one line to `apps.json` in this repo.
-4. Push. The hub rebuilds.
+3. Copy `build/templates/notify-hub.yml` into the app as `.github/workflows/notify-hub.yml`, and add the `HUB_DISPATCH_TOKEN` secret to the app repo.
+4. Add one line to `apps.json` in this repo.
+5. Push both. The hub rebuilds, and from then on it rebuilds whenever the app's `style/`, `dev.json` or `PROJECT.md` changes on its main branch.
 
 ---
 
