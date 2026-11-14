@@ -27,3 +27,7 @@ main.sys-wrap{padding-bottom:80px}
 table{border-collapse:collapse;width:100%;min-width:520px}
 th,td{text-align:left;padding:10px 14px 10px 0;border-bottom:var(--thin);font-size:15px;vertical-align:top}
 th{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--muted)}
+
+/* header mark, as on design.jonesco.com but in cyan */
+.sys-brand .docs-mark{height:40px;width:auto;filter:none}
+@media(max-width:700px){.sys-brand .docs-mark{height:30px}}

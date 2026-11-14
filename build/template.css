@@ -92,3 +92,6 @@ td.num{font-variant-numeric:tabular-nums}
 #lb .bar{flex-direction:row;position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#000;color:#fff;font:700 13px var(--font-label);letter-spacing:var(--track-label);text-transform:uppercase;z-index:2}
 #lb .bar button{font:700 13px var(--font-label);letter-spacing:var(--track-label);text-transform:uppercase;color:#000;background:#fff;border:0;padding:7px 12px;cursor:pointer}
 #lb .bar button:hover{background:var(--highlight)}
+
+.sys-brand .docs-mark{height:40px;width:auto;filter:none}
+@media(max-width:700px){.sys-brand .docs-mark{height:30px}}

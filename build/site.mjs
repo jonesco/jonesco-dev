@@ -54,7 +54,7 @@ ${readFileSync(path.join(root, 'build/hub.css'), 'utf8')}
 </head>
 <body>
 <header class="sys-header"><div class="sys-wrap sys-bar">
-  <a class="sys-brand" href="__ROOT__"><span>Jonesco Dev</span></a>
+  <a class="sys-brand" href="__ROOT__"><img class="docs-mark" src="https://dev.jonesco.com/jonesco-dev.svg" alt=""><span>DEV.JONESCO</span></a>
   <nav class="sys-nav" aria-label="Site">${nav}</nav>
 </div></header>
 `;
@@ -129,5 +129,6 @@ writeFileSync(path.join(dist, 'index.html'),
   `<main class="sys-wrap"><div class="hero"><p class="kicker">Dev work</p><h1>Apps and their styles</h1><p class="lede">One place to see how each Jonesco app looks: colors, type, spacing, components and open decisions, read from the code.</p></div>
 <section><div class="sys-tiles">${tiles || '<p class="empty">No apps yet. Add one to apps.json.</p>'}</div></section>
 </main>\n` + foot);
+cpSync(path.join(root, 'build/jonesco-dev.svg'), path.join(dist, 'jonesco-dev.svg'));
 writeFileSync(path.join(dist, 'CNAME'), 'dev.jonesco.com\n');
 console.log(`site: ${built.length} app(s) in ${dist}`);
