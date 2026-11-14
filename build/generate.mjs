@@ -153,7 +153,7 @@ ${scopedComponentsCss}
 </head>
 <body>
 <header class="sys-header"><div class="sys-wrap sys-bar">
-  <a class="sys-brand" href="${hubUrl ? esc(hubUrl) : '#'}"><img class="docs-mark" src="https://dev.jonesco.com/jonesco-dev.svg" alt=""><span>DEV.JONESCO</span></a>
+  <a class="sys-brand" href="${hubUrl ? esc(hubUrl) : '#'}"><img class="docs-mark" src="https://dev.jonesco.com/jonesco-dev.svg" alt=""><span>JONESCO.DEV</span></a>
   <nav class="sys-nav" aria-label="Sections">${nav}</nav>
 </div></header>
 <main class="sys-wrap">
