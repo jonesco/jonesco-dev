@@ -162,9 +162,9 @@ jonesco-dev/
 
 | App | Repo | In standard shape |
 | --- | --- | --- |
-| Buy↓Sell↑Hold | `jonesco/buysellhold` (private) | Yes. Has `PROJECT.md`, `dev.json`, `style/`, `AppStore/Metadata.md`. Builds, PSDs, zips and rendered videos are ignored. On main. |
-| Flatbed | `jonesco/flatbed` (private) | Yes. Has `PROJECT.md`, `dev.json`, `style/`, `AppStore/Metadata.md`. Layout flattened so the repo is the project root. Pushed to main. |
-| Artifactr | `jonesco/artifactr` (private) | Yes. Has `PROJECT.md`, `dev.json`, `style/`, `AppStore/Metadata.md`. Support and privacy pages still to be created on jonesco.com. |
+| Buy↓Sell↑Hold | `jonesco/buysellhold` (private) | Yes. Live 1.3; 1.3.1 build 10 ready to upload. Has `PROJECT.md`, `dev.json`, `style/`, `AppStore/Metadata.md`. Builds, PSDs, zips and rendered videos are ignored. On main. |
+| Flatbed | `jonesco/flatbed` (private) | Yes. Live 1.1; 1.2 is the pending update. Has `PROJECT.md`, `dev.json`, `style/`, `AppStore/Metadata.md`. Layout flattened so the repo is the project root. Pushed to main. |
+| Artifactr | `jonesco/artifactr` (private) | Yes. Live 1.0.6; nothing pending. Has `PROJECT.md`, `dev.json`, `style/`, `AppStore/Metadata.md`. Support and privacy pages still to be created on jonesco.com. |
 
 ---
 
