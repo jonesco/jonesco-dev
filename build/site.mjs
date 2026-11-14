@@ -65,7 +65,7 @@ ${readFileSync(path.join(root, 'build/hub.css'), 'utf8')}
   <nav class="sys-nav" aria-label="Site">${nav}</nav>
 </div></header>
 `;
-const foot = `<footer class="sys-footer"><div class="sys-wrap"><span>Jonesco Dev</span><span>Built from each app’s style folder.</span></div></footer>
+const foot = `<footer class="sys-footer"><div class="sys-wrap"><span>JONESCO.DEV</span><span>Built from each app’s style folder.</span></div></footer>
 </body>
 </html>
 `;
@@ -120,8 +120,8 @@ function md(src) {
 // ---- standard page ----
 mkdirSync(path.join(dist, 'standard'), { recursive: true });
 writeFileSync(path.join(dist, 'standard/index.html'),
-  head('Standard · Jonesco Dev', hubNav('../')).replace('__ROOT__', '../') +
-  `<main class="sys-wrap prose"><div class="hero"><p class="kicker">Jonesco Dev</p><h1>The app standard</h1></div>\n${md(readFileSync(path.join(root, 'STANDARD.md'), 'utf8').replace(/^# .*\n/, ''))}\n</main>\n` + foot);
+  head('Standard · JONESCO.DEV', hubNav('../')).replace('__ROOT__', '../') +
+  `<main class="sys-wrap prose"><div class="hero"><p class="kicker">JONESCO.DEV</p><h1>The app standard</h1></div>\n${md(readFileSync(path.join(root, 'STANDARD.md'), 'utf8').replace(/^# .*\n/, ''))}\n</main>\n` + foot);
 
 // ---- hub index ----
 const tiles = built.map(b => `<a class="sys-tile" href="${esc(b.slug)}/">
@@ -132,7 +132,7 @@ const tiles = built.map(b => `<a class="sys-tile" href="${esc(b.slug)}/">
   <p class="sys-tile__text">${esc(b.summary || '')}</p>
 </a>`).join('\n');
 writeFileSync(path.join(dist, 'index.html'),
-  head('Jonesco Dev', hubNav('')).replace('__ROOT__', './') +
+  head('JONESCO.DEV', hubNav('')).replace('__ROOT__', './') +
   `<main class="sys-wrap"><div class="hero"><p class="kicker">Dev work</p><h1>Apps and their styles</h1><p class="lede">One place to see how each Jonesco app looks: colors, type, spacing, components and open decisions, read from the code.</p></div>
 <section><div class="sys-tiles">${tiles || '<p class="empty">No apps yet. Add one to apps.json.</p>'}</div></section>
 </main>\n` + foot);
