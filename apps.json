@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "buysellhold",
+    "repo": "jonesco/buysellhold",
+    "ref": "ipad"
+  },
+  {
+    "slug": "artifactr",
+    "repo": "jonesco/artifactr",
+    "ref": "main"
+  },
+  {
+    "slug": "flatbed",
+    "repo": "jonesco/flatbed",
+    "ref": "main"
+  }
+]

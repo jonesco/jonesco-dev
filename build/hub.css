@@ -1,0 +1,29 @@
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:var(--size-body);line-height:1.5}
+*{box-sizing:border-box}
+a{color:inherit}
+code{font-family:var(--font-mono);font-size:.82em;background:var(--gray);padding:1px 5px}
+.sys-header .sys-bar{height:auto;min-height:var(--hdr,72px);padding-top:10px;padding-bottom:10px;flex-wrap:wrap}
+.sys-nav{flex-wrap:wrap;gap:6px 22px}
+main.sys-wrap{padding-bottom:80px}
+.hero{padding:56px 0 8px;border-bottom:var(--rule);margin-bottom:var(--space-section)}
+.hero .kicker{font-family:var(--font-label);font-weight:700;text-transform:uppercase;letter-spacing:var(--track-label);font-size:var(--size-label);color:var(--muted);margin:0 0 10px}
+.hero h1{font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:var(--track-display);font-size:var(--size-h1);line-height:.95;margin:0 0 20px}
+.hero .lede{max-width:62ch;color:var(--muted);margin:0 0 36px}
+.sys-tiles{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.sys-tile__art{background:var(--newsprint)}
+.sys-tile__art img{object-position:top}
+.swatches{display:flex;gap:0;margin-top:12px}
+.swatches i{display:block;flex:1;height:14px}
+.empty{color:var(--muted)}
+/* standard page */
+.prose{max-width:var(--wrap)}
+.prose h2{font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:var(--track-display);font-size:var(--size-section);line-height:.95;margin:var(--space-section) 0 20px;padding-top:var(--space-section);border-top:var(--rule)}
+.prose h3{font-family:var(--font-label);font-weight:700;text-transform:uppercase;letter-spacing:var(--track-label);font-size:var(--size-label);margin:32px 0 12px;padding-bottom:8px;border-bottom:var(--thin)}
+.prose p,.prose ul,.prose ol{max-width:72ch}
+.prose li{margin:4px 0}
+.prose pre{background:var(--gray);padding:16px 18px;overflow-x:auto;font-size:14px;line-height:1.5;margin:16px 0;border:var(--thin)}
+.prose pre code{background:none;padding:0;font-size:inherit}
+.tbl{overflow-x:auto;margin:16px 0}
+table{border-collapse:collapse;width:100%;min-width:520px}
+th,td{text-align:left;padding:10px 14px 10px 0;border-bottom:var(--thin);font-size:15px;vertical-align:top}
+th{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:var(--track-label);text-transform:uppercase;color:var(--muted)}
