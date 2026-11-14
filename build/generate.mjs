@@ -141,6 +141,12 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="https://dev.jonesco.com/jonesco-dev.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dev.jonesco.com/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="https://dev.jonesco.com/icons/favicon-96.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://dev.jonesco.com/icons/apple-touch-icon.png">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <title>${esc(title)}</title>
 <link rel="stylesheet" href="${sysBase}/system.css">
 <link rel="stylesheet" href="${sysBase}/patterns.css">
