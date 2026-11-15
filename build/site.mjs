@@ -83,7 +83,7 @@ for (const a of apps) {
   execFileSync('node', [path.join(root, 'build/generate.mjs'), style, out, '--hub', '../', '--system', SYSTEM], { stdio: 'inherit' });
   const tokens = JSON.parse(readFileSync(path.join(style, 'tokens.json'), 'utf8'));
   const first = tokens.screens?.[0]?.items?.[0]?.file;
-  built.push({ ...meta, thumb: first ? `${a.slug}/screens/${first}` : null, colors: (tokens.color?.groups || []).flatMap(g => g.items).filter(i => !i.to).slice(0, 6).map(i => i.hex) });
+  built.push({ ...meta, font: tokens.typeface?.stack || `'${tokens.typeface?.family || 'system-ui'}',system-ui,sans-serif`, gf: tokens.typeface?.google ? `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(tokens.typeface.family).replace(/%20/g, '+')}:wght@700&display=swap">` : '', thumb: first ? `${a.slug}/screens/${first}` : null, colors: (tokens.color?.groups || []).flatMap(g => g.items).filter(i => !i.to).slice(0, 6).map(i => i.hex) });
   console.log(`built ${a.slug}`);
 }
 
@@ -124,19 +124,12 @@ writeFileSync(path.join(dist, 'standard/index.html'),
   `<main class="sys-wrap prose"><div class="hero"><p class="kicker">JONESCO.DEV</p><h1>The app standard</h1></div>\n${md(readFileSync(path.join(root, 'STANDARD.md'), 'utf8').replace(/^# .*\n/, ''))}\n</main>\n` + foot);
 
 // ---- hub index ----
-const tiles = built.map(b => `<a class="sys-tile" href="${esc(b.slug)}/">
-  <div class="sys-tile__art">${b.thumb ? `<img src="${esc(b.thumb)}" alt="" loading="lazy">` : ''}</div>
-  <p class="sys-tile__id">${esc((b.platforms || []).join(' · '))} · v${esc(b.version || '')}</p>
-  <h3 class="sys-tile__title">${esc(b.name)}</h3>
-  <div class="swatches" aria-hidden="true">${b.colors.map(c => `<i style="background:${c}"></i>`).join('')}</div>
-  <p class="sys-tile__text">${esc(b.summary || '')}</p>
-</a>`).join('\n');
+const links = built.map(b => `<a class="app-link" href="${esc(b.slug)}/" style="font-family:${esc(b.font).replace(/"/g, '&quot;')}">${esc(b.name)}</a>`).join('\n');
 writeFileSync(path.join(dist, 'index.html'),
   head('JONESCO.DEV', hubNav('')).replace('__ROOT__', './') +
   `<div class="kal"><canvas id="kal" aria-hidden="true"></canvas></div>
 <script>${readFileSync(path.join(root, 'build/kaleidoscope.js'), 'utf8')}</script>
-<main class="sys-wrap"><div class="hero"><p class="kicker">Dev work</p><h1>Apps and their styles</h1><p class="lede">One place to see how each Jonesco app looks: colors, type, spacing, components and open decisions, read from the code.</p></div>
-<section><div class="sys-tiles">${tiles || '<p class="empty">No apps yet. Add one to apps.json.</p>'}</div></section>
+${built.map(b => b.gf).join('')}<main class="sys-wrap"><h1 class="visually-hidden">JONESCO.DEV apps</h1><nav class="app-links" aria-label="Apps">${links || '<p class="empty">No apps yet. Add one to apps.json.</p>'}</nav>
 </main>\n` + foot);
 cpSync(path.join(root, 'build/jonesco-dev.svg'), path.join(dist, 'jonesco-dev.svg'));
 cpSync(path.join(root, 'build/icons'), path.join(dist, 'icons'), { recursive: true });

@@ -1,33 +1,30 @@
-// Hero kaleidoscope: an offscreen source of drifting shapes, drawn into twelve alternating mirrored wedges.
+// Hero kaleidoscope: an offscreen source of orbiting shapes, drawn into twelve alternating mirrored wedges.
 (() => {
   const cv = document.getElementById('kal'); if (!cv) return;
-  const ctx = cv.getContext('2d');
-  const N = 12, seg = Math.PI * 2 / N, S = 640;
+  const x = cv.getContext('2d'), TAU = Math.PI * 2, N = 12, a = TAU / N, S = 440;
   const src = document.createElement('canvas'); src.width = src.height = S;
-  const sx = src.getContext('2d');
-  const colors = ['#bae6ff', '#82cfff', '#33b1ff', '#1192e8', '#0072c3', '#00539a', '#ffffff'];
-  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  const shapes = Array.from({ length: 34 }, (_, i) => ({
-    x: rnd() * S, y: rnd() * S * 0.6, r: 24 + rnd() * 90, a: rnd() * 6.28,
-    vx: (rnd() - 0.5) * 0.5, vy: (rnd() - 0.5) * 0.35, va: (rnd() - 0.5) * 0.008,
-    kind: i % 4, color: colors[i % colors.length], fill: rnd() > 0.35,
-  }));
-  const drawSource = () => {
-    sx.fillStyle = '#000'; sx.fillRect(0, 0, S, S);
-    for (const s of shapes) {
-      s.x += s.vx; s.y += s.vy; s.a += s.va;
-      const m = s.r, H = S * 0.6;
-      if (s.x < -m) s.x = S + m; if (s.x > S + m) s.x = -m;
-      if (s.y < -m) s.y = H + m; if (s.y > H + m) s.y = -m;
-      sx.save(); sx.translate(s.x, s.y); sx.rotate(s.a);
-      sx.beginPath();
-      if (s.kind === 0) sx.rect(-s.r / 2, -s.r / 2, s.r, s.r);
-      else if (s.kind === 1) sx.arc(0, 0, s.r / 2, 0, 6.2832);
-      else if (s.kind === 2) { sx.moveTo(0, -s.r / 2); sx.lineTo(s.r / 2, s.r / 2); sx.lineTo(-s.r / 2, s.r / 2); sx.closePath(); }
-      else sx.rect(-s.r, -5, s.r * 2, 10);
-      if (s.fill) { sx.fillStyle = s.color; sx.fill(); } else { sx.strokeStyle = s.color; sx.lineWidth = 6; sx.stroke(); }
-      sx.restore();
+  const s = src.getContext('2d');
+  const cols = ['#ffffff', '#bae6ff', '#82cfff', '#33b1ff', '#1192e8', '#e5f6ff'];
+  const paint = t => {
+    const g = s.createLinearGradient(0, 0, S, S); g.addColorStop(0, '#003a6d'); g.addColorStop(1, '#012749');
+    s.fillStyle = g; s.fillRect(0, 0, S, S);
+    for (let i = 0; i < 40; i++) {
+      const ang = t * (.3 + (i % 7) * .08) + i * 2.4, rr = 24 + (i * 37) % 300;
+      const px = Math.cos(ang) * rr * .9 + 80, py = Math.sin(ang * 1.2) * rr * .7 + 80;
+      const pulse = 1 + .45 * Math.sin(t * 1.7 + i);
+      s.fillStyle = s.strokeStyle = cols[i % 6]; s.globalAlpha = .92; s.lineWidth = 5;
+      s.save(); s.translate(px, py); s.rotate(ang * (i % 2 ? 1.6 : -1.1)); s.beginPath();
+      const k = i % 5;
+      if (k === 0) s.fillRect(-28, -9, (56 + (i % 5) * 12) * pulse, 18);
+      else if (k === 1) { s.arc(0, 0, (13 + (i * 5) % 30) * pulse, 0, TAU); s.fill(); }
+      else if (k === 2) { const q = (22 + (i * 3) % 26) * pulse; s.moveTo(0, -q); s.lineTo(q, q); s.lineTo(-q, q); s.closePath(); s.fill(); }
+      else if (k === 3) { s.arc(0, 0, (18 + (i * 7) % 28) * pulse, 0, TAU); s.stroke(); }
+      else { const q = (16 + (i * 5) % 24) * pulse; s.strokeRect(-q, -q, q * 2, q * 2); }
+      s.restore();
     }
+    s.globalAlpha = 1; s.strokeStyle = '#ffffff'; s.lineWidth = 4; s.beginPath();
+    for (let i = 0; i < 4; i++) { const ang = t * .7 + i * 1.4; s.moveTo(40, 40); s.lineTo(40 + Math.cos(ang) * S, 40 + Math.sin(ang) * S); }
+    s.stroke();
   };
   let W = 0, H = 0, R = 0;
   const size = () => {
@@ -35,24 +32,23 @@
     W = cv.width = Math.round(b.width * d); H = cv.height = Math.round(b.height * d);
     R = Math.hypot(W, H) / 2 + 2;
   };
-  const frame = () => {
-    drawSource();
-    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, W, H);
-    for (let i = 0; i < N; i++) {
-      ctx.save(); ctx.translate(W / 2, H / 2); ctx.rotate(i * seg);
-      if (i % 2) { ctx.rotate(seg); ctx.scale(1, -1); }
-      ctx.beginPath(); ctx.moveTo(0, 0); ctx.arc(0, 0, R, -0.004, seg + 0.004); ctx.closePath(); ctx.clip();
-      ctx.drawImage(src, 0, 0, R, R);
-      ctx.restore();
+  const draw = t => {
+    paint(t); x.fillStyle = '#012749'; x.fillRect(0, 0, W, H);
+    x.save(); x.translate(W / 2, H / 2); x.rotate(t * .05);
+    for (let k = 0; k < N; k++) {
+      x.save(); x.rotate(k * a); if (k % 2) { x.rotate(a); x.scale(1, -1); }
+      x.beginPath(); x.moveTo(0, 0); x.arc(0, 0, R, -0.004, a + 0.004); x.closePath(); x.clip();
+      x.drawImage(src, 0, 0, S, S, 0, 0, R, R); x.restore();
     }
+    x.restore();
   };
   const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let on = true;
-  const loop = () => { if (on) frame(); requestAnimationFrame(loop); };
-  size(); for (let i = 0; i < 200; i++) drawSource(); frame();
-  window.addEventListener('resize', () => { size(); frame(); });
+  let on = true, t0 = performance.now(), last = 3;
+  size(); draw(last);
+  window.addEventListener('resize', () => { size(); draw(last); });
   if (!still) {
     if ('IntersectionObserver' in window) new IntersectionObserver(e => { on = e[0].isIntersecting; }).observe(cv);
+    const loop = now => { if (on) draw(last = 3 + (now - t0) / 1000); requestAnimationFrame(loop); };
     requestAnimationFrame(loop);
   }
 })();
