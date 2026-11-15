@@ -50,9 +50,11 @@
     paint(t, 80 + p.nx * 110, 80 + p.ny * 110, spread, fade);
     x.fillStyle = '#021c36'; x.fillRect(0, 0, W, H);
     x.save(); x.translate(W / 2 + p.nx * W * .06, H / 2 + p.ny * H * .06); x.rotate(t * .055 + p.nx * .5);
-    for (let k = 0; k < N; k++) {
-      x.save(); x.rotate(k * a); if (k % 2) x.scale(1, -1);
-      x.beginPath(); x.moveTo(0, 0); x.arc(0, 0, R * 1.15, -0.004, a + 0.004); x.closePath(); x.clip();
+    // six painted wedges, each mirrored, with a blank wedge between; clipped exactly to its edges so
+    // nothing spills into the blank ones
+    for (let k = 1; k < N; k += 2) {
+      x.save(); x.rotate(k * a); x.scale(1, -1);
+      x.beginPath(); x.moveTo(0, 0); x.arc(0, 0, R * 1.15, 0, a); x.closePath(); x.clip();
       x.drawImage(src, 0, 0, S, S, 0, 0, R * 1.15, R * 1.15); x.restore();
     }
     x.restore();
