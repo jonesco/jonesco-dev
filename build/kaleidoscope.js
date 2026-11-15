@@ -49,7 +49,7 @@
     }
     paint(t, 80 + p.nx * 110, 80 + p.ny * 110, spread, fade);
     x.fillStyle = '#021c36'; x.fillRect(0, 0, W, H);
-    x.save(); x.translate(W / 2 + p.nx * W * .06, H / 2 + p.ny * H * .06); x.rotate(t * .05 + p.nx * .5);
+    x.save(); x.translate(W / 2 + p.nx * W * .06, H / 2 + p.ny * H * .06); x.rotate(t * .055 + p.nx * .5);
     for (let k = 0; k < N; k++) {
       x.save(); x.rotate(k * a); if (k % 2) x.scale(1, -1);
       x.beginPath(); x.moveTo(0, 0); x.arc(0, 0, R * 1.15, -0.004, a + 0.004); x.closePath(); x.clip();
