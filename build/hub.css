@@ -34,6 +34,7 @@ th{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:v
 
 /* hero kaleidoscope band on the hub index */
 .kal{background:#021c36;height:clamp(280px,46vh,520px)}
+@media (max-width:700px){.kal{height:clamp(187px,30.7vh,347px)}}   /* two thirds of desktop */
 .kal canvas{display:block;width:100%;height:100%;cursor:pointer;-webkit-tap-highlight-color:transparent}
 
 /* hub index: the apps as three plain links, each name in its own app's typeface */
