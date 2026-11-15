@@ -125,6 +125,7 @@ const sections = [
 const noteNav = noteSections.map(s => [s.title, idOf(s.title)]);
 const nav = [...sections.map(([n, h]) => [n, h.match(/id="([^"]+)"/)[1]]), ...noteNav]
   .map(([n, id]) => `<a href="#${id}">${esc(n)}</a>`).join('');
+const hub = hubUrl ? esc(hubUrl) : 'https://dev.jonesco.com/';
 
 const gf = t.typeface?.google
   ? `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(t.typeface.family).replace(/%20/g, '+')}:wght@${t.typeface.weights.join(';')}&display=swap">` : '';
@@ -158,11 +159,17 @@ ${scopedComponentsCss}
 </style>
 </head>
 <body>
-<header class="sys-header"><div class="sys-wrap sys-bar">
-  <a class="sys-brand" href="${hubUrl ? esc(hubUrl) : '#'}"><img class="docs-mark" src="https://dev.jonesco.com/jonesco-dev.svg" alt=""><span>JONESCO.DEV</span></a>
-  <nav class="sys-nav" aria-label="Sections">${nav}</nav>
+<header class="sys-header"><div class="sys-bar docs-bar">
+  <a class="sys-brand" href="${hub}"><img class="docs-mark" src="https://dev.jonesco.com/jonesco-dev.svg" alt=""><span>JONESCO.DEV</span></a>
+  <nav class="sys-nav" aria-label="Site"><a href="${hub}">Apps</a><a href="${hub}standard/">Standard</a></nav>
+  <button class="docs-menu-btn" type="button" aria-expanded="false" aria-controls="docs-side">Menu</button>
 </div></header>
-<main class="sys-wrap">
+<div class="docs-shell">
+<aside class="docs-side" id="docs-side">
+  <div class="docs-group"><h4>${esc(t.name || 'This app')}</h4><a href="#top">Overview</a>${nav}</div>
+  <div class="docs-side-ext"><a href="${hub}">All apps</a><a href="${hub}standard/">Standard</a></div>
+</aside>
+<main class="docs-main" id="top">
 <div class="hero">
   <p class="kicker">Style guide</p>
   <h1>${esc(title)}</h1>
@@ -171,13 +178,15 @@ ${scopedComponentsCss}
 ${wrapApp(sections.map(([, h]) => h).join('\n\n'))}
 ${notesSections()}
 </main>
+</div>
 <footer class="sys-footer"><div class="sys-wrap"><span>Generated from tokens.json and notes.md. Edit those, not this page.</span></div></footer>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Screen at full size" hidden>
   <div class="bar"><span id="lbinfo"></span><button type="button" id="lbclose">Close (Esc)</button></div>
   <img id="lbimg" alt="">
 </div>
 <script>
-${lightbox}</script>
+${lightbox}
+${readFileSync(path.join(here, 'docs-nav.js'), 'utf8')}</script>
 </body>
 </html>
 `;
