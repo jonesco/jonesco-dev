@@ -45,7 +45,7 @@ th{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:v
 
 /* black shows above the header and below the page on pull-down */
 html{background:#000}
-.app-tile{background:var(--newsprint);padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.10)}   /* soft lift off the paper; the system has no shadow token */
+.app-tile{background:var(--newsprint);padding:28px}
 /* the body is black so Safari tints its bars black; the content keeps paper edge to edge */
 main{border-image:linear-gradient(var(--paper),var(--paper)) fill 0//0 100vmax}
 /* no footer: paper runs to the bottom of the window, black only shows on overscroll */
@@ -55,7 +55,7 @@ body>main{flex:1 0 auto;width:100%;box-sizing:border-box}
 .app-tile{display:flex;flex-direction:column}
 /* app names: Trade Gothic bold (the body face, not the condensed display), with the app icon inline */
 .app-tile__name{display:flex;align-items:center;gap:14px;margin:0;color:#000;font-family:var(--font-body);font-weight:700;font-size:26px;line-height:1.1;letter-spacing:0;text-transform:none}
-.app-tile__icon{flex:none;width:48px;height:48px;border-radius:11px}
+.app-tile__icon{flex:none;width:48px;height:48px;border-radius:11px;box-shadow:0 1px 2px rgba(0,0,0,.12),0 3px 8px rgba(0,0,0,.10)}   /* lifts the icon off the newsprint */
 .app-tile .sys-tile__text{flex:1}
 .app-tile__actions{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:28px;min-height:40px}
 .app-tile__actions .sys-tag{gap:.4em}   /* flex drops the space between "Updated" and the date */
