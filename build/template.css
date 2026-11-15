@@ -1,7 +1,7 @@
 /* Page chrome for a generated style guide. Colors, type and rules come from the
    Jonesco System (system.css, patterns.css, loaded first). The swatches and the
    drawn components carry the app's own colors and type and never the system's. */
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:var(--size-body);line-height:1.5}
+body{margin:0;background:#000;color:var(--ink);font-family:var(--font-body);font-size:var(--size-body);line-height:1.5}
 *{box-sizing:border-box}
 a{color:inherit}
 code{font-family:var(--font-mono);font-size:.82em;background:var(--gray);padding:1px 5px}
@@ -98,3 +98,5 @@ td.num{font-variant-numeric:tabular-nums}
 
 /* black shows above the header on pull-down and below the footer on short pages */
 html{background:#000}
+/* the body is black so Safari tints its bars black; the content keeps paper edge to edge */
+main{border-image:linear-gradient(var(--paper),var(--paper)) fill 0//0 100vmax}

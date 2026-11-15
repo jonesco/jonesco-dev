@@ -1,4 +1,4 @@
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:var(--size-body);line-height:1.5}
+body{margin:0;background:#000;color:var(--ink);font-family:var(--font-body);font-size:var(--size-body);line-height:1.5}
 *{box-sizing:border-box}
 a{color:inherit}
 code{font-family:var(--font-mono);font-size:.82em;background:var(--gray);padding:1px 5px}
@@ -47,3 +47,5 @@ th{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:v
 /* black shows above the header on pull-down and below the footer on short pages */
 html{background:#000}
 .app-tile{background:var(--newsprint);padding:28px 28px 32px}
+/* the body is black so Safari tints its bars black; the content keeps paper edge to edge */
+main{border-image:linear-gradient(var(--paper),var(--paper)) fill 0//0 100vmax}
