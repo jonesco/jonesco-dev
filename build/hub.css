@@ -40,13 +40,18 @@ th{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:v
 .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .app-tiles{padding-top:64px;gap:20px}
 @media(max-width:600px){.app-tiles.sys-tiles{row-gap:16px;padding-top:32px}}
-.app-tile .sys-tile__art{aspect-ratio:auto;border:0;background:none;overflow:visible}
-.app-tile .sys-tile__art span{display:block;text-align:left;color:#000;font-weight:700;font-size:clamp(26px,2.6vw,37px);line-height:1.05;letter-spacing:-.01em}
 .app-tile .sys-tile__text{margin-top:14px;font-family:var(--font-body);font-weight:400;font-size:19px;line-height:1.35;color:var(--ink);max-width:22em}
-.app-tile:hover .sys-tile__art span,.app-tile:focus-visible .sys-tile__art span{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
 
 /* black shows above the header on pull-down and below the footer on short pages */
 html{background:#000}
-.app-tile{background:var(--newsprint);padding:28px 28px 32px}
+.app-tile{background:var(--newsprint);padding:28px}
 /* the body is black so Safari tints its bars black; the content keeps paper edge to edge */
 main{border-image:linear-gradient(var(--paper),var(--paper)) fill 0//0 100vmax}
+/* app panel: name, description, then App Store badge left and View right along the bottom */
+.app-tile{display:flex;flex-direction:column}
+.app-tile__name{margin:0;color:#000;font-weight:700;font-size:26px;line-height:1.1;letter-spacing:-.01em}
+.app-tile .sys-tile__text{flex:1}
+.app-tile__actions{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:28px;min-height:40px}
+.app-tile__store{display:block;line-height:0}
+.app-tile__store img{height:40px;width:auto}
+:root{--accent:#1192e8}   /* cyan, not the system magenta: button hovers and focus rings */

@@ -83,7 +83,7 @@ for (const a of apps) {
   execFileSync('node', [path.join(root, 'build/generate.mjs'), style, out, '--hub', '../', '--system', SYSTEM], { stdio: 'inherit' });
   const tokens = JSON.parse(readFileSync(path.join(style, 'tokens.json'), 'utf8'));
   const first = tokens.screens?.[0]?.items?.[0]?.file;
-  built.push({ ...meta, font: tokens.typeface?.stack || `'${tokens.typeface?.family || 'system-ui'}',system-ui,sans-serif`, gf: tokens.typeface?.google ? `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(tokens.typeface.family).replace(/%20/g, '+')}:wght@700&display=swap">` : '', thumb: first ? `${a.slug}/screens/${first}` : null, colors: (tokens.color?.groups || []).flatMap(g => g.items).filter(i => !i.to).slice(0, 6).map(i => i.hex) });
+  built.push({ ...meta, appStore: a.appStore, font: tokens.typeface?.stack || `'${tokens.typeface?.family || 'system-ui'}',system-ui,sans-serif`, gf: tokens.typeface?.google ? `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(tokens.typeface.family).replace(/%20/g, '+')}:wght@700&display=swap">` : '', thumb: first ? `${a.slug}/screens/${first}` : null, colors: (tokens.color?.groups || []).flatMap(g => g.items).filter(i => !i.to).slice(0, 6).map(i => i.hex) });
   console.log(`built ${a.slug}`);
 }
 
@@ -124,10 +124,14 @@ writeFileSync(path.join(dist, 'standard/index.html'),
   `<main class="sys-wrap prose"><div class="hero"><p class="kicker">JONESCO.DEV</p><h1>The app standard</h1></div>\n${md(readFileSync(path.join(root, 'STANDARD.md'), 'utf8').replace(/^# .*\n/, ''))}\n</main>\n` + foot);
 
 // ---- hub index ----
-const links = built.map(b => `<a class="sys-tile app-tile" href="${esc(b.slug)}/">
-  <div class="sys-tile__art"><span style="font-family:${esc(b.font).replace(/"/g, '&quot;')}">${esc(b.name)}</span></div>
+const links = built.map(b => `<div class="sys-tile app-tile">
+  <h2 class="app-tile__name" style="font-family:${esc(b.font).replace(/"/g, '&quot;')}">${esc(b.name)}</h2>
   <p class="sys-tile__text">${esc(b.summary || '')}</p>
-</a>`).join('\n');
+  <div class="app-tile__actions">
+    ${b.appStore ? `<a class="app-tile__store" href="${esc(b.appStore)}" aria-label="${esc(b.name)} on the App Store"><img src="app-store-badge.svg" alt="Download on the App Store" width="120" height="40"></a>` : '<span></span>'}
+    <a class="sys-btn sys-btn--md" href="${esc(b.slug)}/" aria-label="View ${esc(b.name)} styles">View</a>
+  </div>
+</div>`).join('\n');
 writeFileSync(path.join(dist, 'index.html'),
   head('JONESCO.DEV', hubNav('')).replace('__ROOT__', './') +
   `<div class="kal"><canvas id="kal" aria-hidden="true"></canvas></div>
@@ -135,6 +139,7 @@ writeFileSync(path.join(dist, 'index.html'),
 ${built.map(b => b.gf).join('')}<main class="sys-wrap"><h1 class="visually-hidden">JONESCO.DEV apps</h1><nav class="sys-tiles app-tiles" aria-label="Apps">${links || '<p class="empty">No apps yet. Add one to apps.json.</p>'}</nav>
 </main>\n` + foot);
 cpSync(path.join(root, 'build/jonesco-dev.svg'), path.join(dist, 'jonesco-dev.svg'));
+cpSync(path.join(root, 'build/app-store-badge.svg'), path.join(dist, 'app-store-badge.svg'));
 cpSync(path.join(root, 'build/icons'), path.join(dist, 'icons'), { recursive: true });
 writeFileSync(path.join(dist, 'manifest.webmanifest'), JSON.stringify({ name: 'JONESCO.DEV', short_name: 'JONESCO.DEV', icons: [{ src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }], start_url: './', display: 'browser', background_color: '#1192e8', theme_color: '#000000' }, null, 2) + '\n');
 writeFileSync(path.join(dist, 'CNAME'), 'dev.jonesco.com\n');

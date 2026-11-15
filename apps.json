@@ -2,12 +2,14 @@
   {
     "slug": "buysellhold",
     "repo": "jonesco/buysellhold",
-    "ref": "main"
+    "ref": "main",
+    "appStore": "https://apps.apple.com/us/app/buysellhold-stock-monitor/id6798918158"
   },
   {
     "slug": "artifactr",
     "repo": "jonesco/artifactr",
-    "ref": "main"
+    "ref": "main",
+    "appStore": "https://apps.apple.com/us/app/artifactr/id6760520782"
   },
   {
     "slug": "flatbed",
