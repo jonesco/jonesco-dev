@@ -23,6 +23,7 @@ function size(file) {   // pixel size from the PNG header; other types are left 
 }
 function thumb(src, dst) {   // a small JPEG for the page; the original stays the download
   for (const [cmd, args] of [['sips', ['-Z', '900', '-s', 'format', 'jpeg', '-s', 'formatOptions', '80', src, '--out', dst]],
+                             ['magick', [src + '[0]', '-resize', '900x900>', '-quality', '80', dst]],
                              ['convert', [src + '[0]', '-resize', '900x900>', '-quality', '80', dst]]]) {
     try { execFileSync(cmd, args, { stdio: 'ignore' }); if (existsSync(dst)) return true; } catch {}
   }

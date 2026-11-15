@@ -25,6 +25,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      # ImageMagick makes the small JPEG thumbnails on each app's Assets section
+      - run: sudo apt-get install -y --no-install-recommends imagemagick >/dev/null
       # APPS_READ_TOKEN: a fine-grained token with read access to each app repo
       - run: node build/site.mjs
         env:
