@@ -131,7 +131,7 @@ const links = built.map(b => `<div class="sys-tile app-tile">
   <p class="sys-tile__text">${esc(b.summary || '')}</p>
   <div class="app-tile__actions">
     ${b.appStore ? `<a class="app-tile__store" href="${esc(b.appStore)}" aria-label="${esc(b.name)} on the App Store"><img src="app-store-badge.svg" alt="Download on the App Store" width="120" height="40"></a>` : '<span></span>'}
-    <a class="sys-btn sys-btn--md" href="${esc(b.slug)}/" aria-label="View ${esc(b.name)} styles">View</a>
+    <a class="sys-btn sys-btn--md sys-btn--ghost" href="${esc(b.slug)}/" aria-label="View ${esc(b.name)} styles">View</a>
   </div>
 </div>`).join('\n');
 writeFileSync(path.join(dist, 'index.html'),
