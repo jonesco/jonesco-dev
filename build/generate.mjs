@@ -182,7 +182,6 @@ ${wrapApp(sections.map(([, h]) => h).join('\n\n'))}
 ${notesSections()}
 </main>
 </div>
-<footer class="sys-footer"><div class="sys-wrap"><span>Generated from tokens.json and notes.md. Edit those, not this page.</span></div></footer>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Screen at full size" hidden>
   <div class="bar"><span id="lbinfo"></span><button type="button" id="lbclose">Close (Esc)</button></div>
   <img id="lbimg" alt="">

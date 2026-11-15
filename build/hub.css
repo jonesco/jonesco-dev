@@ -43,11 +43,14 @@ th{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:v
 @media(max-width:600px){.app-tiles.sys-tiles{row-gap:16px;padding-top:32px}}
 .app-tile .sys-tile__text{margin-top:14px;font-family:var(--font-body);font-weight:400;font-size:19px;line-height:1.35;color:var(--ink);max-width:22em}
 
-/* black shows above the header on pull-down and below the footer on short pages */
+/* black shows above the header and below the page on pull-down */
 html{background:#000}
 .app-tile{background:var(--newsprint);padding:28px}
 /* the body is black so Safari tints its bars black; the content keeps paper edge to edge */
 main{border-image:linear-gradient(var(--paper),var(--paper)) fill 0//0 100vmax}
+/* no footer: paper runs to the bottom of the window, black only shows on overscroll */
+body{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
+body>main{flex:1 0 auto;width:100%;box-sizing:border-box}
 /* app panel: name, description, then App Store badge left and View right along the bottom */
 .app-tile{display:flex;flex-direction:column}
 .app-tile__name{margin:0;color:#000;font-weight:700;font-size:26px;line-height:1.1;letter-spacing:-.01em}

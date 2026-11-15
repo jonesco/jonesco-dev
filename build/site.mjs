@@ -65,7 +65,7 @@ ${readFileSync(path.join(root, 'build/hub.css'), 'utf8')}
   <nav class="sys-nav" aria-label="Site">${nav}</nav>
 </div></header>
 `;
-const foot = `<footer class="sys-footer"><div class="sys-wrap"><span>JONESCO.DEV</span><span>Built from each app’s style folder.</span></div></footer>
+const foot = `
 </body>
 </html>
 `;

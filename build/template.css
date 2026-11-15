@@ -93,7 +93,7 @@ td.num{font-variant-numeric:tabular-nums}
 .sys-brand .docs-mark{height:40px;width:auto;filter:none}
 @media(max-width:700px){.sys-brand .docs-mark{height:30px}}
 
-/* black shows above the header on pull-down and below the footer on short pages */
+/* black shows above the header and below the page on pull-down */
 html{background:#000}
 /* the body is black so Safari tints its bars black; the content keeps paper edge to edge */
 main{border-image:linear-gradient(var(--paper),var(--paper)) fill 0//0 100vmax}
