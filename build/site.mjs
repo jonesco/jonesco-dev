@@ -126,8 +126,8 @@ function md(src) {
 // ---- standard page ----
 mkdirSync(path.join(dist, 'standard'), { recursive: true });
 writeFileSync(path.join(dist, 'standard/index.html'),
-  head('Standard · JONESCO.DEV', hubNav('../')).replace('__ROOT__', '../') +
-  `<main class="sys-wrap prose"><div class="hero"><p class="kicker">JONESCO.DEV</p><h1>The app standard</h1></div>\n${md(readFileSync(path.join(root, 'STANDARD.md'), 'utf8').replace(/^# .*\n/, ''))}\n</main>\n` + foot);
+  head('Standard · Jonesco.dev', hubNav('../')).replace('__ROOT__', '../') +
+  `<main class="sys-wrap prose"><div class="hero"><p class="kicker">Jonesco.dev</p><h1>The app standard</h1></div>\n${md(readFileSync(path.join(root, 'STANDARD.md'), 'utf8').replace(/^# .*\n/, ''))}\n</main>\n` + foot);
 
 // ---- hub index ----
 const links = built.map(b => `<div class="sys-tile app-tile">
@@ -139,14 +139,14 @@ const links = built.map(b => `<div class="sys-tile app-tile">
   </div>
 </div>`).join('\n');
 writeFileSync(path.join(dist, 'index.html'),
-  head('JONESCO.DEV', hubNav('')).replace('__ROOT__', './') +
+  head('Jonesco.dev', hubNav('')).replace('__ROOT__', './') +
   `<div class="kal"><canvas id="kal" aria-hidden="true"></canvas></div>
 <script>${readFileSync(path.join(root, 'build/kaleidoscope.js'), 'utf8')}</script>
-${built.map(b => b.gf).join('')}<main class="sys-wrap"><h1 class="visually-hidden">JONESCO.DEV apps</h1><nav class="sys-tiles app-tiles" aria-label="Apps">${links || '<p class="empty">No apps yet. Add one to apps.json.</p>'}</nav>
+${built.map(b => b.gf).join('')}<main class="sys-wrap"><h1 class="visually-hidden">Jonesco.dev apps</h1><nav class="sys-tiles app-tiles" aria-label="Apps">${links || '<p class="empty">No apps yet. Add one to apps.json.</p>'}</nav>
 </main>\n` + foot);
 cpSync(path.join(root, 'build/jonesco-dev.svg'), path.join(dist, 'jonesco-dev.svg'));
 cpSync(path.join(root, 'build/app-store-badge.svg'), path.join(dist, 'app-store-badge.svg'));
 cpSync(path.join(root, 'build/icons'), path.join(dist, 'icons'), { recursive: true });
-writeFileSync(path.join(dist, 'manifest.webmanifest'), JSON.stringify({ name: 'JONESCO.DEV', short_name: 'JONESCO.DEV', icons: [{ src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }], start_url: './', display: 'browser', background_color: '#1192e8', theme_color: '#000000' }, null, 2) + '\n');
+writeFileSync(path.join(dist, 'manifest.webmanifest'), JSON.stringify({ name: 'Jonesco.dev', short_name: 'Jonesco.dev', icons: [{ src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }], start_url: './', display: 'browser', background_color: '#1192e8', theme_color: '#000000' }, null, 2) + '\n');
 writeFileSync(path.join(dist, 'CNAME'), 'dev.jonesco.com\n');
 console.log(`site: ${built.length} app(s) in ${dist}`);

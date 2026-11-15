@@ -151,7 +151,7 @@ const html = `<!doctype html>
 <link rel="apple-touch-icon" sizes="180x180" href="https://dev.jonesco.com/icons/apple-touch-icon.png">
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<title>${esc(title)}</title>
+<title>${esc(title)} · Jonesco.dev</title>
 <link rel="stylesheet" href="${sysBase}/system.css">
 <link rel="stylesheet" href="${sysBase}/patterns.css">
 ${gf}
