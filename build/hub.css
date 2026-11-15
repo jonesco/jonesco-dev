@@ -53,7 +53,9 @@ body{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
 body>main{flex:1 0 auto;width:100%;box-sizing:border-box}
 /* app panel: name, description, then App Store badge left and View right along the bottom */
 .app-tile{display:flex;flex-direction:column}
-.app-tile__name{margin:0;color:#000;font-weight:700;font-size:26px;line-height:1.1;letter-spacing:-.01em}
+/* app names: Trade Gothic bold (the body face, not the condensed display), with the app icon inline */
+.app-tile__name{display:flex;align-items:center;gap:14px;margin:0;color:#000;font-family:var(--font-body);font-weight:700;font-size:26px;line-height:1.1;letter-spacing:0;text-transform:none}
+.app-tile__icon{flex:none;width:48px;height:48px;border-radius:11px}
 .app-tile .sys-tile__text{flex:1}
 .app-tile__actions{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:28px;min-height:40px}
 .app-tile__actions .sys-tag{gap:.4em}   /* flex drops the space between "Updated" and the date */
