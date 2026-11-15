@@ -135,7 +135,7 @@ const links = built.map(b => `<div class="sys-tile app-tile">
   <p class="sys-tile__text">${esc(b.summary || '')}</p>
   <div class="app-tile__actions">
     ${b.updated ? `<span class="sys-tag sys-tag--md sys-tag--white">Updated <time datetime="${b.updated.toISOString().slice(0, 10)}">${b.updated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/Chicago' })}</time></span>` : '<span></span>'}
-    <a class="sys-btn sys-btn--md sys-btn--ghost" href="${esc(b.slug)}/" aria-label="View ${esc(b.name)} styles">View</a>
+    <a class="sys-btn sys-btn--md sys-btn--icon sys-btn--ghost sys-tooltip" href="${esc(b.slug)}/" aria-label="View ${esc(b.name)}" data-tip="View"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
   </div>
 </div>`).join('\n');
 writeFileSync(path.join(dist, 'index.html'),
