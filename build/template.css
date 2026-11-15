@@ -95,3 +95,6 @@ td.num{font-variant-numeric:tabular-nums}
 
 .sys-brand .docs-mark{height:40px;width:auto;filter:none}
 @media(max-width:700px){.sys-brand .docs-mark{height:30px}}
+
+/* black shows above the header on pull-down and below the footer on short pages */
+html{background:#000}
