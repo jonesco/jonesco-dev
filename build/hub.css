@@ -33,7 +33,7 @@ th{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:v
 @media(max-width:700px){.sys-brand .docs-mark{height:30px}}
 
 /* hero kaleidoscope band on the hub index */
-.kal{background:#012749;height:clamp(280px,46vh,520px)}
+.kal{background:#021c36;height:clamp(280px,46vh,520px)}
 .kal canvas{display:block;width:100%;height:100%}
 
 /* hub index: the apps as three plain links, each name in its own app's typeface */
