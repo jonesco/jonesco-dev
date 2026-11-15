@@ -80,7 +80,9 @@ for (const a of apps) {
   const style = path.join(dir, meta.style || 'style');
   if (!existsSync(path.join(style, 'tokens.json'))) { console.error(`skip ${a.slug}: no ${meta.style || 'style'}/tokens.json`); continue; }
   const out = path.join(dist, a.slug);
-  execFileSync('node', [path.join(root, 'build/generate.mjs'), style, out, '--hub', '../', '--system', SYSTEM], { stdio: 'inherit' });
+  const assetsJson = path.join(os.tmpdir(), `jonesco-dev-assets-${a.slug}.json`);
+  writeFileSync(assetsJson, JSON.stringify({ cfg: a.assets || null, repo: dir }));
+  execFileSync('node', [path.join(root, 'build/generate.mjs'), style, out, '--hub', '../', '--system', SYSTEM, '--assets', assetsJson], { stdio: 'inherit' });
   const tokens = JSON.parse(readFileSync(path.join(style, 'tokens.json'), 'utf8'));
   const first = tokens.screens?.[0]?.items?.[0]?.file;
   built.push({ ...meta, appStore: a.appStore, font: tokens.typeface?.stack || `'${tokens.typeface?.family || 'system-ui'}',system-ui,sans-serif`, gf: tokens.typeface?.google ? `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(tokens.typeface.family).replace(/%20/g, '+')}:wght@700&display=swap">` : '', thumb: first ? `${a.slug}/screens/${first}` : null, colors: (tokens.color?.groups || []).flatMap(g => g.items).filter(i => !i.to).slice(0, 6).map(i => i.hex) });

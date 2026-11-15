@@ -126,3 +126,17 @@ section{scroll-margin-top:calc(var(--hdr) + 24px)}
   .docs-side a{padding:11px 0 11px 12px;font-size:16px}
   .docs-main{padding:0 var(--gutter) 64px}
 }
+
+/* Assets section: icon, image grids with downloads, file list, listing text */
+.asset-icon{display:flex;align-items:center;gap:28px}
+.asset-icon img{width:180px;height:180px;border-radius:40px;border:0;display:block}
+.asset-icon p{margin:0;font-size:14px;color:var(--muted);line-height:1.6}
+.asset-icon b,.asset-files b{display:block;color:var(--ink);font-family:var(--font-label);font-weight:700}
+.asset-dl{font-family:var(--font-label);font-weight:700;text-transform:uppercase;letter-spacing:var(--track-label);font-size:12px;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.asset-dl:hover{color:var(--accent)}
+.shot figcaption .asset-dl{display:inline-block;margin-left:6px}
+.asset-files{list-style:none;margin:0;padding:0;max-width:720px}
+.asset-files li{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-bottom:var(--thin);font-size:14px;color:var(--muted)}
+.asset-text{margin:0;max-width:720px}
+.asset-text dt{font-family:var(--font-label);font-weight:700;text-transform:uppercase;letter-spacing:var(--track-label);font-size:12px;color:var(--muted);margin-top:20px}
+.asset-text dd{margin:6px 0 0;white-space:pre-line;font-size:16px;line-height:1.5}

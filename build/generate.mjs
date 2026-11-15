@@ -9,7 +9,9 @@ import path from 'node:path';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const opt = n => { const i = args.indexOf(n); return i < 0 ? null : args.splice(i, 2)[1]; };
-const hubUrl = opt('--hub');                       // link back to the hub, when built inside it
+const hubUrl = opt('--hub');
+                       // link back to the hub, when built inside it
+const assetsArg = opt('--assets');                  // JSON file { cfg, repo }: the app's assets, from the hub's apps.json
 const SYSTEM = opt('--system') || '3.5.0';         // pinned Jonesco System version
 const [styleDir, outDir] = args.map(p => path.resolve(p));
 if (!styleDir || !outDir) { console.error('Usage: node build/generate.mjs <style-dir> <out-dir>'); process.exit(1); }
@@ -118,8 +120,9 @@ function notesSections() {
   return noteSections.map(s => `<section id="${idOf(s.title)}"><h2>${inline(s.title)}</h2>${s.body.join('\n')}</section>`).join('\n');
 }
 
+const assetsHtml = assetsArg ? (await import('./assets.mjs')).assetsSection(...(({ cfg, repo }) => [cfg, repo, outDir])(JSON.parse(readFileSync(assetsArg, 'utf8')))) : '';
 const sections = [
-  ['Color', colorSection()], ['Type', typeSection()], ['Spacing and shape', spaceSection()],
+  ['Assets', assetsHtml], ['Color', colorSection()], ['Type', typeSection()], ['Spacing and shape', spaceSection()],
   ['Components', componentsSection()], ['Screens', screensSection()],
 ].filter(([, h]) => h);
 const noteNav = noteSections.map(s => [s.title, idOf(s.title)]);

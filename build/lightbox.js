@@ -12,7 +12,7 @@
   }
   function close(){lb.classList.remove('open');lb.hidden=true;document.body.style.overflow='';if(last)last.focus();}
   document.querySelectorAll('.zoom').forEach(function(b){
-    b.addEventListener('click',function(){var i=b.querySelector('img');open(i.src,i.alt,b);});
+    b.addEventListener('click',function(){var i=b.querySelector('img');open(i.dataset.full||i.src,i.alt,b);});
   });
   lb.addEventListener('click',function(e){if(e.target!==img)close();});
   document.getElementById('lbclose').addEventListener('click',close);

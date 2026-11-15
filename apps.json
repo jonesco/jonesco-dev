@@ -3,18 +3,152 @@
     "slug": "buysellhold",
     "repo": "jonesco/buysellhold",
     "ref": "main",
-    "appStore": "https://apps.apple.com/us/app/buysellhold-stock-monitor/id6798918158"
+    "appStore": "https://apps.apple.com/us/app/buysellhold-stock-monitor/id6798918158",
+    "assets": {
+      "icon": "BuySellHold/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
+      "metadata": "AppStore/Metadata.md",
+      "groups": [
+        {
+          "title": "App Store screens · iPhone 6.9-inch",
+          "files": [
+            "AppStore/Marketing-v3/Screens/*.png"
+          ]
+        },
+        {
+          "title": "App Store screens · iPad",
+          "files": [
+            "AppStore/Marketing-v3/Screens-iPad/*.png"
+          ]
+        },
+        {
+          "title": "App Store promo",
+          "wide": true,
+          "files": [
+            "AppStore/Marketing-v3/Promo/header-3840x1646.png",
+            "AppStore/Marketing-v3/Promo/search-results-3840x2560.png"
+          ]
+        },
+        {
+          "title": "Contact sheets",
+          "wide": true,
+          "files": [
+            "AppStore/Marketing-v3/contact-sheet.jpg",
+            "AppStore/Marketing-v3/ipad-contact-sheet.jpg",
+            "AppStore/Marketing-v3/medium-contact-sheet.jpg"
+          ]
+        },
+        {
+          "title": "Fonts",
+          "files": [
+            "AppStore/Marketing-v3/Assets/*.ttf"
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "artifactr",
     "repo": "jonesco/artifactr",
     "ref": "main",
-    "appStore": "https://apps.apple.com/us/app/artifactr/id6760520782"
+    "appStore": "https://apps.apple.com/us/app/artifactr/id6760520782",
+    "assets": {
+      "icon": "Artifactr/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+      "metadata": "AppStore/Metadata.md",
+      "groups": [
+        {
+          "title": "App Store screens · iPhone 6.5-inch",
+          "files": [
+            "AppStore/Marketing/Screens/0*.png"
+          ]
+        },
+        {
+          "title": "App Store screens · iPad 13-inch",
+          "files": [
+            "AppStore/Marketing/Screens/iPad/*.png"
+          ]
+        },
+        {
+          "title": "App Store screens · Mac",
+          "wide": true,
+          "files": [
+            "AppStore/Marketing/Screens/Mac/01-find-it-fast.png",
+            "AppStore/Marketing/Screens/Mac/02-keep-every-spark.png",
+            "AppStore/Marketing/Screens/Mac/03-copy-and-versions.png",
+            "AppStore/Marketing/Screens/Mac/04-make-it-yours.png"
+          ]
+        },
+        {
+          "title": "Marketing art",
+          "wide": true,
+          "files": [
+            "AppStore/Marketing/Assets/artifactr-editorial-bg.png",
+            "AppStore/Marketing/artifactr-marketing-contact-sheet.jpg",
+            "artifactr logo.ai"
+          ]
+        }
+      ]
+    }
   },
   {
     "slug": "flatbed",
     "repo": "jonesco/flatbed",
     "ref": "main",
-    "appStore": "https://apps.apple.com/us/app/flatbed-one-place-for-work/id6800781930"
+    "appStore": "https://apps.apple.com/us/app/flatbed-one-place-for-work/id6800781930",
+    "assets": {
+      "icon": "Sources/Flatbed/Resources/Assets.xcassets/AppIcon.appiconset/icon_ios_1024.png",
+      "metadata": "AppStore/Metadata.md",
+      "groups": [
+        {
+          "title": "App Store screens · live listing",
+          "wide": true,
+          "files": [
+            "AppStore/Screenshots/*.png"
+          ]
+        },
+        {
+          "title": "Marketing screens · iPhone",
+          "files": [
+            "AppStore/Marketing-v3/Screens/iPhone/*.png"
+          ]
+        },
+        {
+          "title": "Marketing screens · iPad",
+          "files": [
+            "AppStore/Marketing-v3/Screens/iPad/*.png"
+          ]
+        },
+        {
+          "title": "Marketing screens · Mac",
+          "wide": true,
+          "files": [
+            "AppStore/Marketing-v3/Screens/Mac/*.png"
+          ]
+        },
+        {
+          "title": "App Store promo",
+          "wide": true,
+          "files": [
+            "AppStore/Marketing-v3/Promo/header-3840x1646.png",
+            "AppStore/Marketing-v3/Promo/header-preview.gif",
+            "AppStore/Marketing-v3/Promo/header-3840x1646.mp4"
+          ]
+        },
+        {
+          "title": "Contact sheets",
+          "wide": true,
+          "files": [
+            "AppStore/Marketing-v3/flatbed-iphone-contact-sheet.jpg",
+            "AppStore/Marketing-v3/flatbed-ipad-contact-sheet.jpg",
+            "AppStore/Marketing-v3/flatbed-mac-contact-sheet.jpg"
+          ]
+        },
+        {
+          "title": "Fonts",
+          "files": [
+            "AppStore/Marketing-v3/Assets/*.ttf"
+          ]
+        }
+      ]
+    }
   }
 ]
