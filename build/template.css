@@ -113,13 +113,12 @@ main{border-image:linear-gradient(var(--paper),var(--paper)) fill 0//0 100vmax}
 .docs-main{padding:0 56px 96px;max-width:1180px;min-width:0}
 main.docs-main{border-image:none}
 section{scroll-margin-top:calc(var(--hdr) + 24px)}
-:root{--accent:#1192e8}
 @media (max-width:860px){
   .docs-shell{grid-template-columns:minmax(0,1fr)}
   .sys-header .sys-nav{display:none}
   .docs-bar{padding:0 var(--gutter)}
   .docs-menu-btn{display:block;height:44px;margin-right:-8px;padding:0 8px;border:0;background:none;color:inherit;cursor:pointer;font-family:var(--font-label);font-weight:700;font-size:var(--size-label);letter-spacing:var(--track-label);text-transform:uppercase}
-  .docs-menu-btn:hover,.docs-menu-btn:focus-visible{color:var(--accent)}
+  .docs-menu-btn:hover,.docs-menu-btn:focus-visible{color:var(--highlight)}
   .docs-side{display:none;position:fixed;z-index:20;top:var(--hdr);left:0;right:0;bottom:0;height:auto;align-self:auto;border-right:0;padding:24px var(--gutter) 48px;background:var(--paper);overscroll-behavior:contain}
   .docs-menu-open .docs-side{display:block}
   .docs-menu-open body{overflow:hidden}
