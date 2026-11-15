@@ -4,12 +4,14 @@
 (() => {
   const cv = document.getElementById('kal'); if (!cv) return;
   const x = cv.getContext('2d'), TAU = Math.PI * 2, N = 12, a = TAU / N, S = 440;
-  const src = document.createElement('canvas'); src.width = src.height = S;
+  // the source is drawn in S units but sized to the wedge on screen, so shapes stay sharp
+const src = document.createElement('canvas'); let SRC = S;
   const s = src.getContext('2d');
   const cols = ['#ffffff', '#bae6ff', '#82cfff', '#33b1ff', '#1192e8', '#e5f6ff'];
   const ease = p => 1 - Math.pow(1 - p, 3);
   // cx, cy: the orbit center in the source; spread: how far shapes sit from it; fade: their opacity
   const paint = (t, cx, cy, spread, fade) => {
+    s.setTransform(SRC / S, 0, 0, SRC / S, 0, 0);
     const g = s.createLinearGradient(0, 0, S, S); g.addColorStop(0, '#01305a'); g.addColorStop(1, '#021c36');
     s.fillStyle = g; s.fillRect(0, 0, S, S);
     for (let i = 0; i < 40; i++) {
@@ -33,6 +35,7 @@
     const d = Math.min(window.devicePixelRatio || 1, 2), b = cv.getBoundingClientRect();
     W = cv.width = Math.round(b.width * d); H = cv.height = Math.round(b.height * d);
     R = Math.hypot(W, H) / 2 + 2;
+    SRC = Math.min(2048, Math.ceil(R * 1.15)); src.width = src.height = SRC;
   };
   // pointer state, eased toward the target each frame
   const p = { nx: 0, ny: 0, tx: 0, ty: 0 };
@@ -55,7 +58,7 @@
     for (let k = 1; k < N; k += 2) {
       x.save(); x.rotate(k * a); x.scale(1, -1);
       x.beginPath(); x.moveTo(0, 0); x.arc(0, 0, R * 1.15, 0, a); x.closePath(); x.clip();
-      x.drawImage(src, 0, 0, S, S, 0, 0, R * 1.15, R * 1.15); x.restore();
+      x.drawImage(src, 0, 0, SRC, SRC, 0, 0, R * 1.15, R * 1.15); x.restore();
     }
     x.restore();
   };
