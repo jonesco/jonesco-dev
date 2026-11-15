@@ -139,14 +139,14 @@ writeFileSync(path.join(dist, 'standard/index.html'),
   `<main class="sys-wrap prose"><div class="hero"><p class="kicker">Jonesco.dev</p><h1>The app standard</h1></div>\n${md(readFileSync(path.join(root, 'STANDARD.md'), 'utf8').replace(/^# .*\n/, ''))}\n</main>\n` + foot);
 
 // ---- hub index ----
-const links = built.map(b => `<div class="sys-tile app-tile">
+const links = built.map(b => `<a class="sys-tile app-tile" href="${esc(b.slug)}/">
   <h2 class="app-tile__name">${b.icon ? `<img class="app-tile__icon" src="${esc(b.icon)}" alt="" width="48" height="48">` : ''}<span>${esc(b.name)}</span></h2>
   <p class="sys-tile__text">${esc(b.summary || '')}</p>
   <div class="app-tile__actions">
     ${b.updated ? `<span class="sys-tag sys-tag--md sys-tag--white">Updated <time datetime="${b.updated.toISOString().slice(0, 10)}">${b.updated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/Chicago' })}</time></span>` : '<span></span>'}
-    <a class="sys-icon-btn app-tile__view" href="${esc(b.slug)}/" aria-label="View ${esc(b.name)}" data-tip="View"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    <span class="app-tile__view" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
   </div>
-</div>`).join('\n');
+</a>`).join('\n');
 writeFileSync(path.join(dist, 'index.html'),
   head('Jonesco.dev', hubNav('')).replace('__ROOT__', './') +
   `<div class="kal"><canvas id="kal" aria-hidden="true"></canvas></div>
