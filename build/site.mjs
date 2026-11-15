@@ -133,7 +133,9 @@ const tiles = built.map(b => `<a class="sys-tile" href="${esc(b.slug)}/">
 </a>`).join('\n');
 writeFileSync(path.join(dist, 'index.html'),
   head('JONESCO.DEV', hubNav('')).replace('__ROOT__', './') +
-  `<main class="sys-wrap"><div class="hero"><p class="kicker">Dev work</p><h1>Apps and their styles</h1><p class="lede">One place to see how each Jonesco app looks: colors, type, spacing, components and open decisions, read from the code.</p></div>
+  `<div class="kal"><canvas id="kal" aria-hidden="true"></canvas></div>
+<script>${readFileSync(path.join(root, 'build/kaleidoscope.js'), 'utf8')}</script>
+<main class="sys-wrap"><div class="hero"><p class="kicker">Dev work</p><h1>Apps and their styles</h1><p class="lede">One place to see how each Jonesco app looks: colors, type, spacing, components and open decisions, read from the code.</p></div>
 <section><div class="sys-tiles">${tiles || '<p class="empty">No apps yet. Add one to apps.json.</p>'}</div></section>
 </main>\n` + foot);
 cpSync(path.join(root, 'build/jonesco-dev.svg'), path.join(dist, 'jonesco-dev.svg'));
