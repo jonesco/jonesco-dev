@@ -85,7 +85,11 @@ for (const a of apps) {
   execFileSync('node', [path.join(root, 'build/generate.mjs'), style, out, '--hub', '../', '--system', SYSTEM, '--assets', assetsJson], { stdio: 'inherit' });
   const tokens = JSON.parse(readFileSync(path.join(style, 'tokens.json'), 'utf8'));
   const first = tokens.screens?.[0]?.items?.[0]?.file;
-  built.push({ ...meta, appStore: a.appStore, font: tokens.typeface?.stack || `'${tokens.typeface?.family || 'system-ui'}',system-ui,sans-serif`, gf: tokens.typeface?.google ? `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(tokens.typeface.family).replace(/%20/g, '+')}:wght@700&display=swap">` : '', thumb: first ? `${a.slug}/screens/${first}` : null, colors: (tokens.color?.groups || []).flatMap(g => g.items).filter(i => !i.to).slice(0, 6).map(i => i.hex) });
+  // last commit in the app repo, shown as a tag on its hub panel
+  let updated = null;
+  try { updated = new Date(execFileSync('git', ['-C', dir, 'log', '-1', '--format=%cI'], { encoding: 'utf8' }).trim()); } catch {}
+  if (updated && isNaN(updated)) updated = null;
+  built.push({ ...meta, updated, font: tokens.typeface?.stack || `'${tokens.typeface?.family || 'system-ui'}',system-ui,sans-serif`, gf: tokens.typeface?.google ? `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(tokens.typeface.family).replace(/%20/g, '+')}:wght@700&display=swap">` : '', thumb: first ? `${a.slug}/screens/${first}` : null, colors: (tokens.color?.groups || []).flatMap(g => g.items).filter(i => !i.to).slice(0, 6).map(i => i.hex) });
   console.log(`built ${a.slug}`);
 }
 
@@ -130,7 +134,7 @@ const links = built.map(b => `<div class="sys-tile app-tile">
   <h2 class="app-tile__name" style="font-family:${esc(b.font).replace(/"/g, '&quot;')}">${esc(b.name)}</h2>
   <p class="sys-tile__text">${esc(b.summary || '')}</p>
   <div class="app-tile__actions">
-    ${b.appStore ? `<a class="app-tile__store" href="${esc(b.appStore)}" aria-label="${esc(b.name)} on the App Store"><img src="app-store-badge.svg" alt="Download on the App Store" width="120" height="40"></a>` : '<span></span>'}
+    ${b.updated ? `<span class="sys-tag sys-tag--md sys-tag--white">Updated <time datetime="${b.updated.toISOString().slice(0, 10)}">${b.updated.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/Chicago' })}</time></span>` : '<span></span>'}
     <a class="sys-btn sys-btn--md sys-btn--ghost" href="${esc(b.slug)}/" aria-label="View ${esc(b.name)} styles">View</a>
   </div>
 </div>`).join('\n');

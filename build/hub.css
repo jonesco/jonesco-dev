@@ -53,6 +53,5 @@ main{border-image:linear-gradient(var(--paper),var(--paper)) fill 0//0 100vmax}
 .app-tile__name{margin:0;color:#000;font-weight:700;font-size:26px;line-height:1.1;letter-spacing:-.01em}
 .app-tile .sys-tile__text{flex:1}
 .app-tile__actions{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:28px;min-height:40px}
-.app-tile__store{display:block;line-height:0}
-.app-tile__store img{height:40px;width:auto}
+.app-tile__actions .sys-tag{gap:.4em}   /* flex drops the space between "Updated" and the date */
 :root{--accent:#1192e8}   /* cyan for focus rings; buttons are ghost, so their hover is ink per the system */
