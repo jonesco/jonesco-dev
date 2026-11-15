@@ -38,6 +38,8 @@ th{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:v
 
 /* hub index: the apps as three plain links, each name in its own app's typeface */
 .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.app-links{display:flex;flex-direction:column;padding-top:24px}
-.app-link{display:block;padding:28px 0;border-bottom:var(--rule);color:#000;text-decoration:none;font-weight:700;font-size:clamp(36px,6vw,72px);line-height:1.05;letter-spacing:-.01em}
-.app-link:hover,.app-link:focus-visible{text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:8px}
+.app-tiles{padding-top:56px}
+.app-tile .sys-tile__art{background:var(--paper);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+.app-tile .sys-tile__art span{color:#000;font-weight:700;font-size:clamp(24px,2.6vw,38px);line-height:1.05;letter-spacing:-.01em}
+.app-tile:hover .sys-tile__art,.app-tile:focus-visible .sys-tile__art{background:var(--newsprint)}
+.app-tile .sys-tile__text{font-size:16px;margin-top:16px}

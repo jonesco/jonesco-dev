@@ -124,12 +124,15 @@ writeFileSync(path.join(dist, 'standard/index.html'),
   `<main class="sys-wrap prose"><div class="hero"><p class="kicker">JONESCO.DEV</p><h1>The app standard</h1></div>\n${md(readFileSync(path.join(root, 'STANDARD.md'), 'utf8').replace(/^# .*\n/, ''))}\n</main>\n` + foot);
 
 // ---- hub index ----
-const links = built.map(b => `<a class="app-link" href="${esc(b.slug)}/" style="font-family:${esc(b.font).replace(/"/g, '&quot;')}">${esc(b.name)}</a>`).join('\n');
+const links = built.map(b => `<a class="sys-tile app-tile" href="${esc(b.slug)}/">
+  <div class="sys-tile__art"><span style="font-family:${esc(b.font).replace(/"/g, '&quot;')}">${esc(b.name)}</span></div>
+  <p class="sys-tile__text">${esc(b.summary || '')}</p>
+</a>`).join('\n');
 writeFileSync(path.join(dist, 'index.html'),
   head('JONESCO.DEV', hubNav('')).replace('__ROOT__', './') +
   `<div class="kal"><canvas id="kal" aria-hidden="true"></canvas></div>
 <script>${readFileSync(path.join(root, 'build/kaleidoscope.js'), 'utf8')}</script>
-${built.map(b => b.gf).join('')}<main class="sys-wrap"><h1 class="visually-hidden">JONESCO.DEV apps</h1><nav class="app-links" aria-label="Apps">${links || '<p class="empty">No apps yet. Add one to apps.json.</p>'}</nav>
+${built.map(b => b.gf).join('')}<main class="sys-wrap"><h1 class="visually-hidden">JONESCO.DEV apps</h1><nav class="sys-tiles app-tiles" aria-label="Apps">${links || '<p class="empty">No apps yet. Add one to apps.json.</p>'}</nav>
 </main>\n` + foot);
 cpSync(path.join(root, 'build/jonesco-dev.svg'), path.join(dist, 'jonesco-dev.svg'));
 cpSync(path.join(root, 'build/icons'), path.join(dist, 'icons'), { recursive: true });
